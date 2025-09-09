@@ -19,8 +19,12 @@ const SignUp = () => {
   ];
 
   const incomeBrackets = [
-    'Under $25,000', '$25,000 - $50,000', '$50,000 - $75,000',
-    '$75,000 - $100,000', '$100,000 - $150,000', 'Over $150,000'
+    'Under ₹3,00,000', 
+    '₹3,00,000 - ₹6,00,000', 
+    '₹6,00,000 - ₹10,00,000',
+    '₹10,00,000 - ₹15,00,000', 
+    '₹15,00,000 - ₹25,00,000', 
+    'Over ₹25,00,000'
   ];
 
   const handleInputChange = (e) => {
@@ -87,14 +91,9 @@ const SignUp = () => {
 
   return (
     <div className="container">
-      {/* Left Side - Illustration */}
+      {/* Left Side - Image Only */}
       <div className="illustration">
-        <h1 className="logo">TaxPal</h1>
         <img src="/illustration.png" alt="Create Account Illustration" />
-        <div className="illustration-text">
-          <h3>Join TaxPal Today</h3>
-          <p>Simplify your tax management and financial planning with our easy-to-use platform.</p>
-        </div>
       </div>
 
       {/* Right Side - Form */}
