@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import SignUp from './components/signup/signup';
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to TaxPal</h1>
+      <SignUp />
     </div>
   );
 }
