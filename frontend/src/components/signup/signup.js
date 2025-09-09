@@ -91,9 +91,14 @@ const SignUp = () => {
 
   return (
     <div className="container">
-      {/* Left Side - Image Only */}
+      {/* Left Side - Illustration */}
       <div className="illustration">
+        <h1 className="logo">TaxPal</h1>
         <img src="/illustration.png" alt="Create Account Illustration" />
+        <div className="illustration-text">
+          <h3>Join TaxPal Today</h3>
+          <p>Simplify your tax management and financial planning with our easy-to-use platform.</p>
+        </div>
       </div>
 
       {/* Right Side - Form */}
