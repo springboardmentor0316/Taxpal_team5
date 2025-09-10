@@ -7,7 +7,6 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  overflow: hidden;
 }
 
 /* Container for both illustration and form */
@@ -17,47 +16,23 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   border-radius: 12px;
   overflow: hidden;
-  width: 1000px;
+  width: 900px;
   max-width: 95%;
-  height: 90vh;
-  max-height: 700px;
 }
 
 /* Illustration side */
 .illustration {
   flex: 1;
-  background: #fcfdfe;
+  background: #fff;
   padding: 40px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: rgb(0, 0, 0);
-}
-
-.logo {
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: rgb(0, 0, 0);
 }
 
 .illustration img {
-  width: 100%;
-  height: 90;
+   max-width: 100%;
+  height: auto;      /* 🔥 scale properly */
   margin: 10px 0;
   border-radius: 8px;
-}
-
-.illustration-text h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.illustration-text p {
-  font-size: 16px;
-  opacity: 0.9;
-  line-height: 1.4;
 }
 
 /* Form box */
@@ -67,56 +42,38 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
 }
 
 .form-box h2 {
-  margin-bottom: 8px;
-  color: #333;
-  font-size: 28px;
-}
-
-.subtitle {
-  color: #666;
-  margin-bottom: 25px;
-  font-size: 16px;
+  margin-bottom: 20px;
 }
 
 /* Input fields */
-form input,
-form select {
+form input {
   width: 100%;
   padding: 12px;
-  margin: 8px 0;
+  margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 14px;
-  box-sizing: border-box;
 }
 
-form input:focus,
-form select:focus {
-  outline: none;
-  border-color: #2d00ff;
-  box-shadow: 0 0 0 2px rgba(45, 0, 255, 0.1);
+/* Forgot password alignment */
+.form-options {
+  display: flex;
+  justify-content: flex-end; /* Right align */
+  margin-bottom: 10px;
 }
 
-form input.error,
-form select.error {
-  border-color: #ff4757;
-  background-color: #fff5f5;
+.forgot {
+  font-size: 14px;
+  color: #2d00ff;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-form input::placeholder {
-  color: #999;
-}
-
-.error-message {
-  color: #ff4757;
-  font-size: 12px;
-  margin-top: -6px;
-  margin-bottom: 8px;
-  display: block;
+.forgot:hover {
+  text-decoration: underline;
 }
 
 /* Buttons */
@@ -130,97 +87,25 @@ form button {
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  margin-top: 15px;
-  transition: background-color 0.2s;
 }
 
 form button:hover {
   background: #1a00cc;
 }
 
-.password-field {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.password-field input {
-  flex: 1;
-  padding-right: 35px; /* space for eye icon */
-}
-
-.eye-icon {
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
-  font-size: 18px;
-  color: #666;
-}
-
-.eye-icon:hover {
-  color: #000;
-}
-
-/* Bottom text (Sign in link) */
-.signin-text {
+/* Bottom text (Sign up / Login links) */
+.signup-text {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 15px;
   font-size: 14px;
-  color: #666;
 }
 
-.signin-text a {
+.signup-text a {
   color: #2d00ff;
   text-decoration: none;
   font-weight: 600;
 }
 
-.signin-text a:hover {
+.signup-text a:hover {
   text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    width: 95%;
-    height: auto;
-    max-height: none;
-  }
-  
-  .illustration {
-    padding: 30px 20px;
-  }
-  
-  .form-box {
-    padding: 30px 20px;
-  }
-  
-  .logo {
-    font-size: 28px;
-  }
-  
-  .illustration img {
-    justify-content: center;
-    width:100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    margin: 10px;
-    border-radius: 8px;
-  }
-  
-  .illustration {
-    padding: 20px 15px;
-  }
-  
-  .form-box {
-    padding: 20px 15px;
-  }
-  
-  .form-box h2 {
-    font-size: 24px;
-  }
 }
