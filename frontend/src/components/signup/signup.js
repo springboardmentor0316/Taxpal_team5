@@ -68,10 +68,7 @@ const SignUp = () => {
     newErrors.confirmPassword = 'Passwords do not match';
   }
 
-  if (!formData.fullName.trim()) {
-    newErrors.fullName = 'Full name is required';
-  }
-
+  
   if (!formData.email.trim()) {
     newErrors.email = 'Email is required';
   } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -165,16 +162,6 @@ const SignUp = () => {
             </span>
           </div>
           {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
-
-          <input
-            type="text"
-            name="fullName"
-            placeholder="Enter your full name"
-            value={formData.fullName}
-            onChange={handleInputChange}
-            className={errors.fullName ? 'error' : ''}
-          />
-          {errors.fullName && <span className="error-message">{errors.fullName}</span>}
 
           <input
             type="email"
