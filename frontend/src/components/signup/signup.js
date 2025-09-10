@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './signup.css';
 
@@ -201,7 +202,7 @@ const SignUp = () => {
         </form>
 
         <p className="signin-text">
-          Already have an account? <a href="/" >Sign In</a>
+           Already have an account? <Link to="/signin">Sign In</Link>
         </p>
       </div>
     </div>
