@@ -67,7 +67,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-y: auto;
   text-align: center;
 }
 
@@ -137,6 +136,29 @@ form button {
 
 form button:hover {
   background: #1a00cc;
+}
+
+.password-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-field input {
+  flex: 1;
+  padding-right: 35px; /* space for eye icon */
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+}
+
+.eye-icon:hover {
+  color: #000;
 }
 
 /* Bottom text (Sign in link) */

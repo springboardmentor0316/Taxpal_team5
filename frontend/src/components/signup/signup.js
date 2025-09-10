@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './signup.css';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
+    confirmPassword: '',
     fullName: '',
     email: '',
     country: '',
@@ -12,18 +14,19 @@ const SignUp = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false); // 👁️ toggle
 
   const countries = [
-    'United States', 'Canada', 'United Kingdom', 'Australia', 
+    'United States', 'Canada', 'United Kingdom', 'Australia',
     'Germany', 'France', 'India', 'Japan', 'Other'
   ];
 
   const incomeBrackets = [
-    'Under ₹3,00,000', 
-    '₹3,00,000 - ₹6,00,000', 
+    'Under ₹3,00,000',
+    '₹3,00,000 - ₹6,00,000',
     '₹6,00,000 - ₹10,00,000',
-    '₹10,00,000 - ₹15,00,000', 
-    '₹15,00,000 - ₹25,00,000', 
+    '₹10,00,000 - ₹15,00,000',
+    '₹15,00,000 - ₹25,00,000',
     'Over ₹25,00,000'
   ];
 
@@ -33,7 +36,7 @@ const SignUp = () => {
       ...prev,
       [name]: value
     }));
-    
+
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -43,40 +46,51 @@ const SignUp = () => {
   };
 
   const validateForm = () => {
-    const newErrors = {};
+  const newErrors = {};
 
-    if (!formData.username.trim()) {
-      newErrors.username = 'Username is required';
-    }
+  if (!formData.username.trim()) {
+    newErrors.username = 'Username is required';
+  }
 
-    if (!formData.password.trim()) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
-    }
+  if (!formData.password.trim()) {
+    newErrors.password = 'Password is required';
+  } else if (formData.password.length < 8) {
+    newErrors.password = 'Password must be at least 8 characters';
+  } else if (!/(?=.*[0-9])/.test(formData.password)) {
+    newErrors.password = 'Password must contain at least one number';
+  } else if (!/(?=.*[!@#$%^&*])/.test(formData.password)) {
+    newErrors.password = 'Password must contain at least one special character';
+  }
 
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Full name is required';
-    }
+  if (!formData.confirmPassword.trim()) {
+    newErrors.confirmPassword = 'Please confirm your password';
+  } else if (formData.confirmPassword !== formData.password) {
+    newErrors.confirmPassword = 'Passwords do not match';
+  }
 
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
+  if (!formData.fullName.trim()) {
+    newErrors.fullName = 'Full name is required';
+  }
 
-    if (!formData.country) {
-      newErrors.country = 'Please select your country';
-    }
+  if (!formData.email.trim()) {
+    newErrors.email = 'Email is required';
+  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    newErrors.email = 'Please enter a valid email';
+  }
 
-    return newErrors;
-  };
+  if (!formData.country) {
+    newErrors.country = 'Please select your country';
+  }
+
+  return newErrors;
+};
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const newErrors = validateForm();
-    
+
     if (Object.keys(newErrors).length === 0) {
       console.log('Form submitted:', formData);
       alert('Account created successfully!');
@@ -85,13 +99,10 @@ const SignUp = () => {
     }
   };
 
-  const handleSignInClick = () => {
-    alert('Navigate to sign in page');
-  };
-
+  
   return (
     <div className="container">
-      {/* Left Side - Illustration */}
+      {/* Left Side */}
       <div className="illustration">
         <h1 className="logo">TaxPal</h1>
         <img src="/illustration.png" alt="Create Account Illustration" />
@@ -101,11 +112,11 @@ const SignUp = () => {
         </div>
       </div>
 
-      {/* Right Side - Form */}
+      {/* Right Side */}
       <div className="form-box">
         <h2>Create an Account</h2>
         <p className="subtitle">Enter your information to create your TaxPal account</p>
-        
+
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -117,15 +128,43 @@ const SignUp = () => {
           />
           {errors.username && <span className="error-message">{errors.username}</span>}
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Choose a password"
-            value={formData.password}
-            onChange={handleInputChange}
-            className={errors.password ? 'error' : ''}
-          />
+          {/* Password */}
+          <div className="password-field">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Choose a password"
+              value={formData.password}
+              onChange={handleInputChange}
+              className={errors.password ? 'error' : ''}
+            />
+            <span
+              className="eye-icon"
+              onClick={() => setShowPassword(prev => !prev)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
           {errors.password && <span className="error-message">{errors.password}</span>}
+
+          {/* Confirm Password */}
+          <div className="password-field">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="confirmPassword"
+              placeholder="Confirm your password"
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              className={errors.confirmPassword ? 'error' : ''}
+            />
+            <span
+              className="eye-icon"
+              onClick={() => setShowPassword(prev => !prev)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+          {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
 
           <input
             type="text"
@@ -175,7 +214,7 @@ const SignUp = () => {
         </form>
 
         <p className="signin-text">
-          Already have an account? <a href="/login" onClick={handleSignInClick}>Sign In</a>
+          Already have an account? <a href="/" >Sign In</a>
         </p>
       </div>
     </div>
