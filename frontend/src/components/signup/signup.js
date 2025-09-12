@@ -15,7 +15,10 @@ const SignUp = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const [showPassword, setShowPassword] = useState(false); // 👁️ toggle
+
+  // 👁️ separate toggles for each password field
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const countries = [
     'United States', 'Canada', 'United Kingdom', 'Australia',
@@ -38,51 +41,82 @@ const SignUp = () => {
       [name]: value
     }));
 
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
+    // Live validation for password + confirmPassword
+    const newErrors = { ...errors };
+
+    if (name === "password") {
+      if (!value.trim()) {
+        newErrors.password = "Password is required";
+      } else if (value.length < 8) {
+        newErrors.password = "Password must be at least 8 characters";
+      } else if (!/(?=.*[0-9])/.test(value)) {
+        newErrors.password = "Password must contain at least one number";
+      } else if (!/(?=.*[!@#$%^&*])/.test(value)) {
+        newErrors.password = "Password must contain at least one special character";
+      } else {
+        delete newErrors.password;
+      }
+
+      // also check confirmPassword if already filled
+      if (formData.confirmPassword && formData.confirmPassword !== value) {
+        newErrors.confirmPassword = "Passwords do not match";
+      } else {
+        delete newErrors.confirmPassword;
+      }
     }
+
+    if (name === "confirmPassword") {
+      if (!value.trim()) {
+        newErrors.confirmPassword = "Please confirm your password";
+      } else if (value !== formData.password) {
+        newErrors.confirmPassword = "Passwords do not match";
+      } else {
+        delete newErrors.confirmPassword;
+      }
+    }
+
+    if (errors[name]) {
+      newErrors[name] = '';
+    }
+
+    setErrors(newErrors);
   };
 
   const validateForm = () => {
-  const newErrors = {};
+    const newErrors = {};
 
-  if (!formData.username.trim()) {
-    newErrors.username = 'Username is required';
-  }
+    if (!formData.username.trim()) {
+      newErrors.username = 'Username is required';
+    }
 
-  if (!formData.password.trim()) {
-    newErrors.password = 'Password is required';
-  } else if (formData.password.length < 8) {
-    newErrors.password = 'Password must be at least 8 characters';
-  } else if (!/(?=.*[0-9])/.test(formData.password)) {
-    newErrors.password = 'Password must contain at least one number';
-  } else if (!/(?=.*[!@#$%^&*])/.test(formData.password)) {
-    newErrors.password = 'Password must contain at least one special character';
-  }
+    if (!formData.password.trim()) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 8) {
+      newErrors.password = 'Password must be at least 8 characters';
+    } else if (!/(?=.*[0-9])/.test(formData.password)) {
+      newErrors.password = 'Password must contain at least one number';
+    } else if (!/(?=.*[!@#$%^&*])/.test(formData.password)) {
+      newErrors.password = 'Password must contain at least one special character';
+    }
 
-  if (!formData.confirmPassword.trim()) {
-    newErrors.confirmPassword = 'Please confirm your password';
-  } else if (formData.confirmPassword !== formData.password) {
-    newErrors.confirmPassword = 'Passwords do not match';
-  }
+    if (!formData.confirmPassword.trim()) {
+      newErrors.confirmPassword = 'Please confirm your password';
+    } else if (formData.confirmPassword !== formData.password) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
 
-  
-  if (!formData.email.trim()) {
-    newErrors.email = 'Email is required';
-  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-    newErrors.email = 'Please enter a valid email';
-  }
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
 
-  if (!formData.country) {
-    newErrors.country = 'Please select your country';
-  }
+    if (!formData.country) {
+      newErrors.country = 'Please select your country';
+    }
 
-  return newErrors;
-};
-
+    return newErrors;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -97,7 +131,6 @@ const SignUp = () => {
     }
   };
 
-  
   return (
     <div className="container">
       {/* Left Side */}
@@ -148,7 +181,7 @@ const SignUp = () => {
           {/* Confirm Password */}
           <div className="password-field">
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showConfirmPassword ? 'text' : 'password'}
               name="confirmPassword"
               placeholder="Confirm your password"
               value={formData.confirmPassword}
@@ -157,9 +190,9 @@ const SignUp = () => {
             />
             <span
               className="eye-icon"
-              onClick={() => setShowPassword(prev => !prev)}
+              onClick={() => setShowConfirmPassword(prev => !prev)}
             >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
+              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
           {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
@@ -202,7 +235,7 @@ const SignUp = () => {
         </form>
 
         <p className="signin-text">
-           Already have an account? <Link to="/signin">Sign In</Link>
+          Already have an account? <Link to="/signin">Sign In</Link>
         </p>
       </div>
     </div>
