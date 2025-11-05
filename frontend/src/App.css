@@ -1,0 +1,156 @@
+.set-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 24px 0 16px;
+}
+
+.set-head.compact {
+  margin: 0 0 16px;
+}
+
+.set-head.between {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.set-head .set-sub {
+  max-width: 640px;
+}
+
+.set-head .set-head {
+  margin: 0;
+  gap: 4px;
+}
+
+.set-title,
+.set-title1,
+.set-title2,
+.set-titles {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.set-title.lg {
+  font-size: 28px;
+}
+
+.set-sub {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.set-head-actions,
+.page-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Global hover/elevation treatment for interactive elements */
+.btn,
+.btn34,
+.btn-record,
+.btn-outlines,
+.link-btn,
+.link-button,
+.toggle-btn,
+.icon-btn,
+.link {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease,
+    color 0.18s ease;
+}
+
+.btn::after,
+.btn34::after,
+.btn-record::after,
+.btn-outlines::after,
+.link-btn::after,
+.link-button::after,
+.toggle-btn::after,
+.icon-btn::after,
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+}
+
+.btn:hover:not(:disabled),
+.btn34:hover:not(:disabled),
+.btn-record:hover:not(:disabled),
+.btn-outlines:hover:not(:disabled),
+.link-btn:hover,
+.link-button:hover,
+.toggle-btn:hover,
+.icon-btn:hover,
+.link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.12);
+}
+
+.btn:hover::after,
+.btn34:hover::after,
+.btn-record:hover::after,
+.btn-outlines:hover::after,
+.link-btn:hover::after,
+.link-button:hover::after,
+.toggle-btn:hover::after,
+.icon-btn:hover::after,
+.link:hover::after {
+  opacity: 1;
+}
+
+.btn.primary:hover:not(:disabled),
+.btn34:hover,
+.btn-outlines.primary:hover,
+.btn-record.income:hover,
+.btn-record.expense:hover {
+  color: #fff;
+}
+
+.btn.primary:hover:not(:disabled),
+.btn34:hover,
+.btn-record:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.btn.danger:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+}
+
+.btn.ghost:hover:not(:disabled),
+.link-btn:hover,
+.link-button:hover,
+.link:hover {
+  background: rgba(226, 232, 240, 0.5);
+  color: #0f172a;
+}
+
+.toggle-btn:hover,
+.icon-btn:hover {
+  background: rgba(226, 232, 240, 0.55);
+  color: inherit;
+}
+
+.btn:disabled,
+.btn34:disabled,
+.btn-record:disabled,
+.btn-outlines:disabled {
+  box-shadow: none !important;
+  transform: none !important;
+}

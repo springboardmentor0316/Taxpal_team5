@@ -1,0 +1,191 @@
+:root{
+  --page:#f6f7fb;
+  --panel:#ffffff;
+  --text:#101828;
+  --muted:#667085;
+  --line:#e5e7eb;
+  --blue:#2563eb;
+  --blue-dark:#1e4fd3;
+  --danger:#ef4444;
+}
+
+.budgets-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:16px;
+}
+
+.budget-health{ display:flex; align-items:center; gap:8px; }
+.muted{ color:var(--muted); font-size:13px; }
+.chip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:4px 8px; border-radius:999px; font-size:12px; border:1px solid var(--line);
+  background:#f3f6ff; color:#1d3bbd;
+}
+.chip.good{ background:#ecfdf5; color:#065f46; border-color:#bbf7d0; }
+.chip.warn{ background:#fff7ed; color:#9a3412; border-color:#fed7aa; }
+.chip.bad{ background:#fee2e2; color:#b91c1c; border-color:#fecaca; }
+
+.budget-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:12px;
+}
+
+.set-field{ display:flex; flex-direction:column; gap:6px; }
+.set-label{ color:var(--text); font-size:12px; font-weight: 600; }
+.set-field input, .set-field select, .set-field textarea{
+  width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--line);
+  background:#fff; color:var(--text);
+}
+.category-hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.category-hint.warning {
+  color: #b91c1c;
+}
+
+.span-2{ grid-column: span 2; }
+
+.toolbar{ display:flex; gap:10px; align-items:center; }
+.toolbar.right{ justify-content:flex-end; }
+
+/* Compact toolbar that doesn't stretch to full cell height/width */
+.toolbar-compact{
+  align-self: end;   /* stop grid stretch on block axis */
+  justify-self: end; /* push to right inside its grid cell */
+  width: auto;       /* ensure intrinsic width */
+}
+@supports not (justify-self: end) {
+  /* fallback for older engines */
+  .toolbar-compact { margin-left: auto; }
+}
+
+/* Buttons */
+.btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  height:38px; padding:0 14px; border-radius:8px; cursor:pointer;
+  border:1px solid var(--line); background:#fff; color:var(--text);
+  transition: background .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+  width: auto; /* never full width */
+  flex: 0 0 auto; /* don't grow in flex containers */
+}
+.btn:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(37,99,235,.25); }
+
+/* Size */
+.btn.sm { height:32px; padding:0 10px; }
+
+/* Variants */
+.btn.primary {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+  font-weight: 400;
+}
+.btn.primary:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+
+.btn.ghost {
+  background:#fff;
+  color: var(--text);
+  border-color: var(--line);
+}
+.btn.ghost:hover { background:#f3f4f6; }
+
+.table-wrap{ width:100%; overflow:auto; cursor: pointer; font-weight: 400; font-size: 18px;}
+.budget-table{ width:100%; border-collapse:collapse; font-size: 18px;}
+.budget-table th, .budget-table td{
+  text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); color:var(--text);font-size: 18px;
+}
+.budget-table thead th{ font-size:13px; color:var(--muted); font-weight:400; }
+.budget-table tbody tr:hover{ background:#fafafa; font-size: 18px; }
+.actions-col{ width:160px; }
+.budget-table tbody td {
+  font-size: 13px;   /* or 0.8125rem */
+  line-height: 1.3;  /* slightly tighter, keep readable */
+}
+.budget-table tbody td .progress-track {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.budget-table tbody td .progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+.budget-table tbody td .progress-fill.good { background: #22c55e; }
+.budget-table tbody td .progress-fill.warning,
+.budget-table tbody td .progress-fill.warn { background: #f97316; }
+.budget-table tbody td .progress-fill.bad { background: #ef4444; }
+
+.budget-table tbody td .progress-label {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #475569;
+}
+.link{
+  background:none; border:none; padding:0; color:var(--blue); cursor:pointer;
+}
+.link.danger{ color:var(--danger); }
+.empty{ text-align:center; color:var(--muted); padding:20px 0; }
+
+@media (max-width: 900px){
+  .budget-grid{ grid-template-columns: 1fr; }
+  .span-2{ grid-column: auto; }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 16px 0;
+}
+
+/* inline edit */
+.btn.sm { height:32px; padding:0 10px; }
+.inline-edit-actions { display:flex; gap:8px; align-items:center; }
+
+.edit-row select,
+.edit-row input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+}
+
+.budgets-toolbar{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  margin-bottom:16px;
+}
+
+.budget-chart{
+  width:100%;
+  min-height:260px;
+}
+
+@media (min-width: 900px){
+  .budgets-toolbar{
+    flex-direction:row;
+    align-items:flex-end;
+    justify-content:space-between;
+  }
+}

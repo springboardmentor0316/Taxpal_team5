@@ -1,0 +1,158 @@
+
+/* Backdrop with blur */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+}
+
+/* Dialog sheet */
+.modal-sheet {
+  width: min(680px, 92vw);
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  overflow: hidden;
+  animation: popIn 160ms ease-out;
+}
+
+/* Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e6e8ee;
+}
+.modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+}
+.icon-btn {
+  border: 0;
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  color: #475569;
+}
+
+/* Body */
+.modal-body {
+  padding: 18px 20px;
+  background: #f8fafc;
+}
+
+/* Footer */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e6e8ee;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.btn.ghost {
+  background: #fff;
+  border-color: #cbd5e1;
+  color: #1a43a4;
+}
+.modal-footer .btn.primary {
+  background: #16a34a;
+  color: #fff;
+  border-color: #15803d;
+}
+
+.modal-footer .btn.primary:hover {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(22, 163, 74, 0.25);
+}
+
+.modal-footer .btn.primary:focus-visible {
+  outline: 3px solid rgba(22, 163, 74, 0.35);
+  outline-offset: 2px;
+}
+
+
+/* Form layout similar to Figma card */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 16px;
+}
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-row.full {
+  grid-column: 1 / -1;
+}
+label {
+  font-size: 13px;
+  color: #334155;
+}
+input, select, textarea {
+  background: #eaf2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 10px 12px;
+  outline: none;
+  font-size: 14px;
+}
+textarea { resize: vertical; }
+
+.field-error { color: #b91c1c; font-size: 12px; margin-top: 4px; }
+
+/* Entrance animation */
+@keyframes popIn {
+  from { transform: translateY(8px) scale(0.98); opacity: 0; -webkit-transform: translateY(8px) scale(0.98); -moz-transform: translateY(8px) scale(0.98); -ms-transform: translateY(8px) scale(0.98); -o-transform: translateY(8px) scale(0.98); }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+/* Ensure fields size correctly */
+.form-row select {
+  min-height: 60px;         /* taller control */
+  line-height: 1.2;
+}
+
+/* Prevent clipping inside modal body */
+.modal-body,
+.modal-sheet {
+  overflow: visible;         /* allow dropdown to escape */
+}
+
+/* Create a higher stacking context for the dropdown */
+.form-row,
+select {
+  position: relative;
+  z-index: 2;                /* above neighbors */
+}
+
+/* Safari/WebKit dropdown fix inside transformed parents */
+@supports (-webkit-overflow-scrolling: touch) {
+  .modal-backdrop { transform: translateZ(0); }
+}
+
+/* If any parent sets overflow:hidden, override here */
+.form-grid { overflow: visible; }

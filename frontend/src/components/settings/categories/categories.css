@@ -1,0 +1,95 @@
+:root {
+  --bg-panel: #eeecec;
+  --bg-row: #eaeaea;
+  --bg-row-hover: #779bff;
+  --text: #101828;
+  --muted: #667085;
+  --border: #e9e9e9;
+  --primary: #3b82f6;
+  --danger: #f87171;
+}
+
+/* Panel */
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+}
+/* Buttons */
+.btn.primary {
+  background: var(--primary); color: #fff; border: none;
+  padding: 10px 14px; border-radius: 8px; cursor: pointer; font-weight: 600;
+}
+.btn.primary:hover { filter: brightness(1.05); }
+
+/* Tabs */
+.tabs { display: flex; gap: 8px; border-bottom: 1px solid var(--border); margin: 8px 0 12px; }
+.tab {
+  appearance: none; background: transparent; border: none; color: var(--muted);
+  padding: 10px 12px; border-bottom: 2px solid transparent; cursor: pointer; font-weight: 600;
+}
+.tab.active { color: var(--text); border-color: var(--primary); }
+
+/* List */
+.cat-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.cat-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 10px 12px; background: var(--bg-row);
+  border: 1px solid var(--border); border-radius: 10px;
+  transition: background .15s ease, border-color .15s ease;
+}
+.cat-row:hover { background: var(--bg-row-hover); border-color: #263244; }
+.cat-row.empty {
+  justify-content: center;
+  color: var(--muted);
+  background: #f5f6fb;
+  border-style: dashed;
+}
+.cat-row.empty:hover {
+  background: #f5f6fb;
+  border-color: var(--border);
+}
+.cat-main { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.cat-name {
+  color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 14px;
+}
+.dot {
+  width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+  box-shadow: 0 0 0 2px #0a1020 inset;
+}
+
+/* Actions */
+.cat-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.icon-btn {
+  background: transparent; border: 1px solid var(--border); color: #cbd5e1;
+  width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 7px; cursor: pointer; font-size: 14px; line-height: 1;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.icon-btn:hover { background: #f6f7f7; border-color: #cdd1d9; color: #1f2937; }
+.icon-btn.danger { color: var(--danger); }
+.icon-btn.danger:hover { background: rgba(248, 113, 113, 0.12); border-color: var(--danger); color: var(--danger); }
+.color-input {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Inline edit */
+.edit-input {
+  background: #fff; color: var(--text);
+  border: 1px solid #2a3650; border-radius: 7px;
+  padding: 6px 8px; min-width: 200px; font-size: 14px; outline: none;
+}
+.edit-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59,130,246,.15); }
+
+/* Responsive */
+@media (max-width: 560px) {
+  .set-head { flex-direction: column; align-items: stretch; }
+  .set-actions { align-self: flex-start; }
+  .btn.primary { width: 100%; }
+}

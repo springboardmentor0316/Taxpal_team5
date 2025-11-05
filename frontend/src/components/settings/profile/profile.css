@@ -1,0 +1,39 @@
+/* Wrap input and icon */
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Place the edit icon to the right inside the field */
+.edit-icon {
+  margin-left: 8px;
+  font-size: 14px;
+  color: #6b7280; /* gray-500 */
+  cursor: text; /* indicates editable text */
+  user-select: none;
+}
+
+/* Hover/focus feedback for editable fields */
+.set-field.editable input:focus,
+.set-field.editable input:hover {
+  outline: 2px solid #2563eb; /* blue-600 */
+  outline-offset: 2px;
+}
+
+/* Read-only email shows pointer cursor as requested */
+.pointer {
+  cursor: pointer;
+}
+
+/* Optional: distinct style for read-only input */
+.input-readonly {
+  background-color: #f9fafb; /* light gray */
+  color: #111827; /* near black for readability */
+}
+
+/* Ensure consistent input sizing when icons present */
+.input-wrap input {
+  flex: 1 1 auto;
+  min-width: 0;
+}

@@ -1,0 +1,119 @@
+/* General body styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container for both illustration and form */
+.container {
+  display: flex;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  width: 900px;
+  max-width: 95%;
+}
+
+/* Illustration side */
+.illustration {
+  flex: 1;
+  background: #fff;
+  padding: 40px;
+  text-align: center;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 auto 20px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.illustration img {
+   max-width: 100%;
+  height: auto;      /* 🔥 scale properly */
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+/* Form box */
+.form-box {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-box h2 {
+  margin-bottom: 20px;
+}
+
+/* Input fields */
+form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Forgot password alignment */
+.form-options {
+  display: flex;
+  justify-content: flex-end; /* Right align */
+  margin-bottom: 10px;
+}
+
+.forgot {
+  font-size: 14px;
+  color: #2d00ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+form button {
+  width: 100%;
+  padding: 12px;
+  background: #2d00ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+form button:hover {
+  background: #1a00cc;
+}
+
+/* Bottom text (Sign up / Login links) */
+.signup-text {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.signup-text a {
+  color: #2d00ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}

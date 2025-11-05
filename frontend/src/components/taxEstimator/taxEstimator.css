@@ -1,0 +1,237 @@
+/* Header row */
+.tax-page .set-head.between {
+  overflow: hidden;
+}
+
+.tax-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.tax-metric-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-title {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.metric-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.metric-subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* Layout: calculator wider, summary slimmer */
+.tax-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* left is wider than right */
+  gap: 24px;
+  align-items: start; /* top-align panels */
+}
+
+/* Left form grid */
+.tax-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.tax-grid .span-2 { grid-column: span 2; }
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Panels */
+.panel {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  height: auto;          /* avoid clipping */
+  overflow: visible;     /* allow content to show */
+}
+.panel.left {
+  width: 100%;
+  align-self: start;
+}
+.panel.right {
+  width: 100%;
+  align-self: start;
+  /* optional: keep summary compact on huge screens */
+  max-width: 640px;
+}
+
+.tax-chart {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.tax-chart .recharts-default-tooltip {
+  font-size: 12px;
+}
+
+.set-field { display: flex; flex-direction: column; gap: 6px; }
+.set-label { font-size: 14px; color: #191a1b; }
+
+/* Inputs */
+.tax-grid input,
+.tax-grid select,
+.tax-grid textarea {
+  width: 100%;
+  min-width: 0;                /* allow shrinking inside grid */
+  height: 36px;
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+.tax-grid textarea {
+  height: auto;
+  min-height: 90px;
+  padding: 8px 10px;
+}
+
+/* Buttons */
+
+.btn {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
+.btn:active { transform: translateY(0.5px); }
+
+.btn-outlines {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
+.btn-outlines:active { transform: translateY(0.5px); }
+
+/* Toolbar: strong right alignment */
+.tax-grid .toolbar {
+  grid-column: 1 / -1;               /* span full width of form */
+  display: flex !important;
+  width: 100%;
+  gap: 5px;
+  justify-content: flex-end !important;
+  align-items: center;
+}
+/* Extra safeguard: push the calculate button to the right */
+.tax-grid .toolbar .btn.primary {
+  margin-left: auto;
+}
+
+/* Summary panel */
+.summary {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.summary .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;             /* wrap on narrow widths */
+  word-break: break-word;
+  white-space: normal;
+}
+.summary .row.total {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.history {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+  text-align: left;
+}
+
+.history-table th {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.history-table td:last-child {
+  text-align: right;
+}
+
+.placeholder {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Utility text */
+.muted { color: #6b7280; }
+.muted.sm { font-size: 12px; }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .tax-layout { grid-template-columns: 1fr; }
+  .panel.right { max-width: none; }
+  .tax-grid .toolbar { justify-content: flex-end !important; }
+}
+
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,.35);
+  display: grid; place-items: center; z-index: 50;
+}
+.modal-card {
+  width: min(520px, 92vw);
+  background: #fff; border-radius: 12px; border: 1px solid #e5e7eb; padding: 16px;
+}
+.modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.modal-title { margin: 0; font-size: 18px; }
+.modal-grid { display: grid; gap: 12px; }
+.icon-btn { border: 1px solid #e5e7eb; background: #fff; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; }
+.btn.ghost { background: #fff; color: #111827; border: 1px solid #d1d5db; }
+.btn.sm { height: 32px; padding: 0 12px; }
+.toolbar.right { display: flex; justify-content: flex-end; gap: 10px; }

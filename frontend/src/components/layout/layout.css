@@ -1,0 +1,54 @@
+:root {
+  --sidebar-width: 260px;
+}
+
+/* Basic resets limited to layout context */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  overflow: hidden; /* only .dash-main scrolls on desktop */
+  background: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Shell and main */
+.dash-shell {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.dash-main {
+  position: absolute;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 32px 32px 32px;
+  width: calc(100% - var(--sidebar-width));
+}
+
+/* Mobile: let page scroll and stack */
+@media (max-width: 768px) {
+  body { overflow: auto; }
+  .dash-main {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    width: 100%;
+    padding: 16px;
+  }
+}
